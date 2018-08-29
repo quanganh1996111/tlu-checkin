@@ -17,4 +17,21 @@ Choose 1
 Enter username and password
 Choose 1 to install new service on port 22 for outside ssh remote
 
-sudo install
+Create 3g directory and install sakis3g and umtskeeper as well as necessary package
+
+$ cd ~
+$ sudo mkdir 3GDongle
+$ cd 3GDongle
+/home/pi/3GDongle~$ wget "http://mintakaconciencia.net/squares/umtskeeper/src/umtskeeper.tar.gz"
+/home/pi/3GDongle~$ wget "http://raspberry-at-home.com/files/sakis3g.tar.gz"
+/home/pi/3GDongle~$ sudo tar -xzvf umtskeeper.tar.gz sakis3g.tar.gz
+/home/pi/3GDongle~$ sudo apt-get install usb-mode-switch
+/home/pi/3GDongle~$ sudo apt-get install ppp
+Get umtskeeper and sakis3g execution permission
+/home/pi/3GDongle~$ sudo chmod +x sakis3g
+/home/pi/3GDongle~$ sudo chmod +x umtskeeper
+
+Change rc.local to connect to 3G at boot
+$ sudo nano /etc/rc.local
+Add this command between fi and exit 0:
+/home/pi/3GDongle/umtskeeper --sakisoperators "USBINTERFACE='0' OTHER='USBMODEM' USBMODEM='12d1:1506' APN='CUSTOM_APN' CUSTOM_APN='m-wap' SIM_PIN='1234' APN_USER='mms' APN_PASS='mms'" --sakisswitches "--sudo --console" --devicename 'Huawei' --log --silent --monthstart 8 --nat 'no'
