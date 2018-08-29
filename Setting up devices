@@ -1,0 +1,20 @@
+Copy the following line one by one:
+
+Getting new update and upgrade, takes about 10mins depends on connection speed
+$ sudo apt-get update
+$ sudo apt-get upgrade
+
+Check partition and expand rootfs
+$ lsblk
+$ sudo raspi-config
+Choose Advanced Options -> Expand Filesystem
+Reboot to take effect
+
+Install remot3.it deamon
+$ sudo apt-get install weavedconnectd
+$ sudo weavedinstaller
+Choose 1
+Enter username and password
+Choose 1 to install new service on port 22 for outside ssh remote
+
+sudo install
